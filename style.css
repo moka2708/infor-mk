@@ -139,3 +139,54 @@ body { background-color: var(--bg-color); color: #000; padding: 20px; }
     .action-buttons { flex-direction: column; align-items: center; gap: 15px; }
     .neo-btn { width: 100%; text-align: center; } /* Nút full chiều rộng trên mobile cho dễ bấm */
 }
+
+/* --- MODAL POPUP STYLES (Thêm vào cuối file) --- */
+.modal {
+    display: none; /* Mặc định ẩn đi */
+    position: fixed; 
+    z-index: 1000; 
+    left: 0; top: 0;
+    width: 100%; height: 100%; 
+    background-color: rgba(0,0,0,0.7); /* Màu nền tối mờ */
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 15% auto; /* Căn giữa dọc */
+    padding: 30px;
+    border: 4px solid #000;
+    width: 80%;
+    max-width: 500px;
+    box-shadow: 10px 10px 0px #000; /* Bóng đổ cứng */
+    position: relative;
+    text-align: center;
+    animation: popup 0.3s ease-out;
+}
+
+@keyframes popup {
+    from {transform: scale(0.8); opacity: 0;}
+    to {transform: scale(1); opacity: 1;}
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    position: absolute;
+    right: 15px; top: 5px;
+}
+
+.close:hover, .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Chỉnh nút trong modal */
+.close-btn-action {
+    margin-top: 15px;
+    width: 100%;
+}
