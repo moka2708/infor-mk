@@ -106,3 +106,20 @@ h1 { font-size: 3.5rem; line-height: 1.1; margin-bottom: 20px; text-transform: u
     h1 { font-size: 2.5rem; }
     .neo-nav { flex-direction: column; gap: 15px; }
 }
+/* --- BỔ SUNG ĐỂ SỬA LỖI BỊ CHE CHỮ --- */
+
+/* Tạo khoảng cách cho khu vực chứa các nút ở Header */
+.hero-box .action-buttons {
+    margin-top: 35px; /* Đẩy các nút xuống xa hơn dòng chữ */
+    display: flex;    /* Dùng flexbox để căn chỉnh tốt hơn */
+    justify-content: center; /* Căn giữa các nút */
+    gap: 20px;        /* Tạo khoảng cách đều giữa 2 nút */
+    flex-wrap: wrap;  /* Cho phép nút xuống dòng trên màn hình bé tí */
+}
+
+/* Điều chỉnh lại nút bấm một chút cho đẹp khi dùng flexbox */
+.neo-btn {
+    /* Bỏ dòng margin: 10px; cũ đi nếu có, hoặc thêm dòng này để ghi đè */
+    margin: 0 !important; 
+}
+
