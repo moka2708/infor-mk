@@ -1,50 +1,141 @@
-/* --- MODAL POPUP STYLES (Thêm vào cuối file) --- */
-.modal {
-    display: none; /* Mặc định ẩn đi */
-    position: fixed; 
-    z-index: 1000; 
-    left: 0; top: 0;
-    width: 100%; height: 100%; 
-    background-color: rgba(0,0,0,0.7); /* Màu nền tối mờ */
-    backdrop-filter: blur(5px);
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+
+/* --- CẤU HÌNH CHUNG --- */
+:root {
+    --bg-color: #f4f4f4;
+    --border: 3px solid #000;
+    --shadow: 6px 6px 0px #000;
+    --card-shadow: 8px 8px 0px #000;
+    
+    /* Bảng màu Neo-Brutalism */
+    --color-yellow: #fffa65;
+    --color-pink: #ff9ff3;
+    --color-blue: #74b9ff;
+    --color-green: #55efc4;
+    --color-white: #ffffff;
 }
 
-.modal-content {
-    background-color: #fff;
-    margin: 15% auto; /* Căn giữa dọc */
-    padding: 30px;
-    border: 4px solid #000;
-    width: 80%;
-    max-width: 500px;
-    box-shadow: 10px 10px 0px #000; /* Bóng đổ cứng */
-    position: relative;
-    text-align: center;
-    animation: popup 0.3s ease-out;
+html {
+    scroll-behavior: smooth;
 }
 
-@keyframes popup {
-    from {transform: scale(0.8); opacity: 0;}
-    to {transform: scale(1); opacity: 1;}
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Space Mono', monospace; }
+
+body { background-color: var(--bg-color); color: #000; padding: 20px; }
+
+/* --- MARQUEE (CHỮ CHẠY) --- */
+.marquee-container {
+    background: #000; color: #fff; padding: 10px 0; overflow: hidden; white-space: nowrap;
+    border: var(--border); margin-bottom: 20px;
+}
+.marquee-content { display: inline-block; animation: marquee 15s linear infinite; font-weight: bold; }
+@keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+/* --- NAVIGATION --- */
+.neo-nav {
+    display: flex; justify-content: space-between; align-items: center;
+    background: #fff; border: var(--border); box-shadow: var(--shadow);
+    padding: 15px 30px; margin-bottom: 40px; position: sticky; top: 20px; z-index: 100;
+}
+.logo { font-weight: 900; font-size: 1.5rem; letter-spacing: -2px; }
+.nav-links a { text-decoration: none; color: #000; font-weight: bold; margin-left: 20px; transition: 0.2s; }
+.nav-links a:hover { background: var(--color-yellow); text-decoration: underline; }
+.nav-links .highlight { background: #000; color: #fff; padding: 5px 10px; }
+.nav-links .highlight:hover { background: var(--color-pink); color: #000; }
+
+/* --- HERO SECTION (ĐÃ SỬA LỖI CHE CHỮ TẠI ĐÂY) --- */
+.hero-box {
+    background: var(--color-yellow); 
+    border: var(--border); 
+    box-shadow: var(--shadow);
+    padding: 60px 20px; 
+    text-align: center; 
+    position: relative; 
+    margin-bottom: 60px;
+    
+    /* Sửa lỗi: Dùng Flexbox cột để kiểm soát khoảng cách dọc */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px; /* Khoảng cách tự động giữa các phần tử con */
 }
 
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-    position: absolute;
-    right: 15px; top: 5px;
+.hero-box h1 {
+    font-size: 3.5rem; line-height: 1.1; margin: 0; text-transform: uppercase;
 }
 
-.close:hover, .close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
+.hero-box p {
+    font-size: 1.1rem; margin: 0; /* Reset margin để dùng gap của cha */
 }
 
-/* Chỉnh nút trong modal */
-.close-btn-action {
-    margin-top: 15px;
+.action-buttons {
+    margin-top: 30px; /* Đẩy mạnh nút xuống dưới thêm chút nữa cho thoáng */
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
     width: 100%;
+}
+
+.badge {
+    position: absolute; top: -15px; right: -15px; background: var(--color-pink);
+    border: var(--border); padding: 5px 15px; font-weight: bold; transform: rotate(5deg);
+}
+
+/* --- SECTION CHUNG --- */
+.section-block { margin-bottom: 80px; }
+.section-title {
+    font-size: 2.5rem; border-bottom: 5px solid #000; display: inline-block;
+    margin-bottom: 30px; background: var(--color-green); padding: 0 10px;
+}
+
+/* --- GRID DỰ ÁN --- */
+.project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+
+.card {
+    background: #fff; border: var(--border); box-shadow: var(--card-shadow);
+    padding: 25px; transition: transform 0.2s, box-shadow 0.2s;
+    display: flex; flex-direction: column; justify-content: space-between;
+}
+.card:hover { transform: translate(-3px, -3px); box-shadow: 12px 12px 0px #000; }
+
+.project-card { border-top: 10px solid #000; }
+.card-header { font-weight: bold; color: #666; margin-bottom: 10px; font-size: 0.8rem; }
+.tech-stack { margin: 15px 0; }
+.tech-stack span {
+    background: #eee; border: 1px solid #000; padding: 3px 8px; font-size: 0.8rem; margin-right: 5px;
+}
+
+/* --- ABOUT SECTION --- */
+.about-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.item1 { background: var(--color-pink); }
+.item2 { background: var(--color-blue); }
+.skill-list li { list-style: square; margin-left: 20px; margin-bottom: 10px; }
+
+/* --- FOOTER --- */
+.footer-box {
+    background: #000; color: #fff; padding: 50px; text-align: center; border: var(--border);
+}
+.footer-box h2 { color: var(--color-yellow); margin-bottom: 20px; font-size: 2.5rem; }
+
+/* --- BUTTONS --- */
+.neo-btn {
+    display: inline-block; padding: 12px 25px; font-weight: bold; text-decoration: none;
+    border: var(--border); cursor: pointer; background: #fff; color: #000;
+    box-shadow: 4px 4px 0px #000; transition: 0.1s;
+    margin: 0; /* Reset margin để tránh lỗi layout */
+}
+.neo-btn:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0px #000; }
+.neo-btn.primary { background: #000; color: #fff; }
+.neo-btn.primary:hover { background: var(--color-green); color: #000; }
+.neo-btn.secondary { background: #fff; color: #000; }
+.neo-btn.small { padding: 8px 15px; font-size: 0.9rem; margin-top: auto; width: fit-content; }
+
+/* --- MOBILE RESPONSIVE --- */
+@media (max-width: 768px) {
+    .about-layout { grid-template-columns: 1fr; }
+    .hero-box h1 { font-size: 2.5rem; }
+    .neo-nav { flex-direction: column; gap: 15px; }
+    .action-buttons { flex-direction: column; align-items: center; gap: 15px; }
+    .neo-btn { width: 100%; text-align: center; } /* Nút full chiều rộng trên mobile cho dễ bấm */
 }
