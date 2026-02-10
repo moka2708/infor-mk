@@ -3,53 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moka | Neo-Portfolio</title>
+    <title>Moka | Hoàng Minh Khôi</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <div class="marquee-container">
         <div class="marquee-content">
-            HOÀNG MINH KHÔI • WEB DEVELOPER • STUDENT • CREATIVE • MOKA • 
-            HOÀNG MINH KHÔI • WEB DEVELOPER • STUDENT • CREATIVE • MOKA •
+            HOÀNG MINH KHÔI • WEB DEVELOPER • MOKA • CREATIVE • 
+            HOÀNG MINH KHÔI • WEB DEVELOPER • MOKA • CREATIVE •
         </div>
     </div>
 
-    <nav class="neo-nav">
+    <nav class="neo-nav sticky">
         <div class="logo">MOKA.DEV</div>
         <div class="nav-links">
-            <a href="#">Work</a>
-            <a href="#">About</a>
-            <button id="vibe-btn">Đổi Vibe!</button>
+            <a href="#work">Dự án (Work)</a>
+            <a href="#about">Về tôi (About)</a>
+            <a href="#contact" class="highlight">Liên hệ</a>
         </div>
     </nav>
 
     <main>
-        <div class="hero-box">
+        <header class="hero-box">
             <div class="badge">OPEN TO WORK</div>
             <h1>XIN CHÀO,<br>TÔI LÀ KHÔI.</h1>
             <p>Sinh viên / Lập trình viên / Người chơi hệ "Code dạo"</p>
-            
             <div class="action-buttons">
-                <button class="neo-btn primary">Xem dự án</button>
-                <button class="neo-btn secondary">Liên hệ ngay</button>
+                <a href="#work" class="neo-btn primary">Xem dự án</a>
+                <a href="https://github.com/mokadotdev" target="_blank" class="neo-btn secondary">Github</a>
             </div>
-        </div>
+        </header>
 
-        <div class="grid-layout">
+        <section id="work" class="section-block">
+            <h2 class="section-title">DỰ ÁN TIÊU BIỂU</h2>
+            
+            <div class="project-grid">
+                <div class="card project-card">
+                    <div class="card-header">WEB</div>
+                    <h3>Student ID Card</h3>
+                    <p>Website tạo thẻ sinh viên trực tuyến, giao diện trực quan.</p>
+                    <div class="tech-stack">
+                        <span>HTML</span> <span>CSS</span> <span>JS</span>
+                    </div>
+                    <button class="neo-btn small">Xem Demo</button>
+                </div>
+
+                <div class="card project-card">
+                    <div class="card-header">GAME</div>
+                    <h3>Moka Adventure</h3>
+                    <p>Game nhập vai 2D chạy trên trình duyệt. (Đang phát triển)</p>
+                    <div class="tech-stack">
+                        <span>Canvas</span> <span>JS</span>
+                    </div>
+                    <button class="neo-btn small">Chơi thử</button>
+                </div>
+
+                <div class="card project-card">
+                    <div class="card-header">APP</div>
+                    <h3>Quản lý chi tiêu</h3>
+                    <p>App giúp sinh viên quản lý tiền nong cuối tháng.</p>
+                    <div class="tech-stack">
+                        <span>React</span> <span>Firebase</span>
+                    </div>
+                    <button class="neo-btn small">Github</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="section-block about-layout">
             <div class="card item1">
-                <h3>Kỹ năng</h3>
-                <ul>
-                    <li>HTML/CSS/JS</li>
-                    <li>ReactJS</li>
-                    <li>Cà phê đen đá</li>
-                </ul>
+                <h3>Moka là ai?</h3>
+                <p>Tôi tên thật là <strong>Hoàng Minh Khôi</strong>. Một chàng trai Gen Z đam mê công nghệ và thích tạo ra những thứ "hay ho" trên internet.</p>
+                <br>
+                <p>Phương châm: "Code sạch, Bug ít, Ngủ ngon."</p>
             </div>
             <div class="card item2">
-                <h3>Về Moka</h3>
-                <p>Thích code, thích game và những dòng code sạch đẹp.</p>
+                <h3>Kỹ năng (Skillset)</h3>
+                <ul class="skill-list">
+                    <li>💻 Front-end: HTML, CSS, JS, React</li>
+                    <li>🎨 Design: UI/UX cơ bản, Photoshop</li>
+                    <li>🔧 Tool: VS Code, Git, Figma</li>
+                    <li>☕ Khả năng uống cà phê: Thượng thừa</li>
+                </ul>
             </div>
-        </div>
+        </section>
+
+        <section id="contact" class="footer-box">
+            <h2>HỢP TÁC KHÔNG?</h2>
+            <p>Kết nối với Moka hoặc nhắn tin tâm sự mỏng tại đây nhé:</p>
+            
+            <div class="action-buttons" style="justify-content: center; display: flex; gap: 15px; flex-wrap: wrap; margin-top: 20px;">
+                <a href="https://www.facebook.com/moka.2708" target="_blank" class="neo-btn primary">Facebook</a>
+                
+                <a href="https://www.instagram.com/moka_2708/" target="_blank" class="neo-btn secondary" style="background: #ff9ff3; color: black;">Instagram</a>
+            </div>
+        </section>
+
     </main>
 
     <script src="script.js"></script>
