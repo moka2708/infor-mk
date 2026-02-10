@@ -1,110 +1,108 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
 
 :root {
-    --bg-color: #f0f0f0;
-    --main-color: #a29bfe; /* Màu tím nhạt */
-    --accent-color: #ff7675; /* Màu hồng cam */
+    --bg-color: #f4f4f4;
     --border: 3px solid #000;
-    --shadow: 5px 5px 0px #000;
+    --shadow: 6px 6px 0px #000;
+    --card-shadow: 8px 8px 0px #000;
+    
+    /* Bảng màu Neo-Brutalism */
+    --color-yellow: #fffa65;
+    --color-pink: #ff9ff3;
+    --color-blue: #74b9ff;
+    --color-green: #55efc4;
+    --color-white: #ffffff;
+}
+
+/* --- QUAN TRỌNG: Làm cho cuộn trang mượt mà --- */
+html {
+    scroll-behavior: smooth;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Space Mono', monospace; }
 
-body {
-    background-color: var(--bg-color);
-    color: #000;
-    padding: 20px;
-    transition: background 0.3s;
-}
+body { background-color: var(--bg-color); color: #000; padding: 20px; }
 
-/* Hiệu ứng chữ chạy */
+/* Các thành phần cũ (Marquee, Nav...) giữ nguyên style cơ bản nhưng thêm chút tinh chỉnh */
 .marquee-container {
-    background: #000; color: #fff;
-    padding: 10px 0; overflow: hidden; white-space: nowrap;
+    background: #000; color: #fff; padding: 10px 0; overflow: hidden; white-space: nowrap;
     border: var(--border); margin-bottom: 20px;
 }
+.marquee-content { display: inline-block; animation: marquee 15s linear infinite; font-weight: bold; }
+@keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-.marquee-content {
-    display: inline-block;
-    animation: marquee 15s linear infinite;
-    font-weight: bold; font-size: 1.2rem;
-}
-
-@keyframes marquee {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-}
-
-/* Navigation */
 .neo-nav {
     display: flex; justify-content: space-between; align-items: center;
-    background: #fff;
-    border: var(--border);
-    box-shadow: var(--shadow);
-    padding: 20px;
-    margin-bottom: 40px;
+    background: #fff; border: var(--border); box-shadow: var(--shadow);
+    padding: 15px 30px; margin-bottom: 40px; position: sticky; top: 20px; z-index: 100;
 }
+.logo { font-weight: 900; font-size: 1.5rem; letter-spacing: -2px; }
+.nav-links a { text-decoration: none; color: #000; font-weight: bold; margin-left: 20px; transition: 0.2s; }
+.nav-links a:hover { background: var(--color-yellow); text-decoration: underline; }
+.nav-links .highlight { background: #000; color: #fff; padding: 5px 10px; }
+.nav-links .highlight:hover { background: var(--color-pink); color: #000; }
 
-.logo { font-size: 1.5rem; font-weight: 900; letter-spacing: -1px; }
-
-.nav-links a {
-    text-decoration: none; color: #000; font-weight: bold;
-    margin-right: 20px;
-}
-.nav-links a:hover { text-decoration: underline; }
-
-/* Hero Section */
+/* Hero Box */
 .hero-box {
-    background: #fdcb6e; /* Màu vàng */
-    border: var(--border);
-    box-shadow: var(--shadow);
-    padding: 40px;
-    text-align: center;
-    position: relative;
-    margin-bottom: 30px;
+    background: var(--color-yellow); border: var(--border); box-shadow: var(--shadow);
+    padding: 60px 20px; text-align: center; position: relative; margin-bottom: 60px;
 }
-
 .badge {
-    position: absolute; top: -15px; right: -15px;
-    background: #ff7675; color: #fff;
-    padding: 5px 10px; border: var(--border);
-    font-weight: bold; transform: rotate(5deg);
+    position: absolute; top: -15px; right: -15px; background: var(--color-pink);
+    border: var(--border); padding: 5px 15px; font-weight: bold; transform: rotate(5deg);
+}
+h1 { font-size: 3.5rem; line-height: 1.1; margin-bottom: 20px; text-transform: uppercase; }
+
+/* --- PHẦN MỚI: SECTION STYLING --- */
+.section-block { margin-bottom: 80px; }
+.section-title {
+    font-size: 2.5rem; border-bottom: 5px solid #000; display: inline-block;
+    margin-bottom: 30px; background: var(--color-green); padding: 0 10px;
 }
 
-h1 { font-size: 4rem; line-height: 1; margin-bottom: 20px; text-transform: uppercase; }
+/* Grid Dự Án */
+.project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+
+.card {
+    background: #fff; border: var(--border); box-shadow: var(--card-shadow);
+    padding: 25px; transition: transform 0.2s, box-shadow 0.2s;
+    display: flex; flex-direction: column; justify-content: space-between;
+}
+.card:hover { transform: translate(-3px, -3px); box-shadow: 12px 12px 0px #000; }
+
+.project-card { border-top: 10px solid #000; }
+.card-header { font-weight: bold; color: #666; margin-bottom: 10px; font-size: 0.8rem; }
+.tech-stack { margin: 15px 0; }
+.tech-stack span {
+    background: #eee; border: 1px solid #000; padding: 3px 8px; font-size: 0.8rem; margin-right: 5px;
+}
+
+/* About Section */
+.about-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.item1 { background: var(--color-pink); }
+.item2 { background: var(--color-blue); }
+.skill-list li { list-style: square; margin-left: 20px; margin-bottom: 10px; }
+
+/* Footer */
+.footer-box {
+    background: #000; color: #fff; padding: 50px; text-align: center; border: var(--border);
+}
+.footer-box h2 { color: var(--color-yellow); margin-bottom: 20px; font-size: 2.5rem; }
 
 /* Buttons */
 .neo-btn {
-    padding: 15px 30px;
-    font-size: 1rem; font-weight: bold; cursor: pointer;
-    border: var(--border);
-    box-shadow: var(--shadow);
-    transition: all 0.1s;
-    margin: 10px;
+    display: inline-block; padding: 12px 25px; font-weight: bold; text-decoration: none;
+    border: var(--border); cursor: pointer; background: #fff; color: #000;
+    box-shadow: 4px 4px 0px #000; transition: 0.1s;
 }
-
-.neo-btn:active {
-    transform: translate(5px, 5px); /* Hiệu ứng nhấn xuống */
-    box-shadow: none;
-}
-
-.primary { background: #fff; }
-.secondary { background: #00cec9; color: #fff; }
-
-/* Grid Cards */
-.grid-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-
-.card {
-    background: #fff; border: var(--border);
-    box-shadow: var(--shadow); padding: 20px;
-}
-
-.item1 { background: #ff7675; }
-.item2 { background: #74b9ff; }
+.neo-btn:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0px #000; }
+.neo-btn.primary { background: #000; color: #fff; }
+.neo-btn.primary:hover { background: var(--color-green); color: #000; }
+.neo-btn.small { padding: 8px 15px; font-size: 0.9rem; margin-top: auto; width: fit-content; }
 
 /* Mobile */
 @media (max-width: 768px) {
+    .about-layout { grid-template-columns: 1fr; }
     h1 { font-size: 2.5rem; }
-    .grid-layout { grid-template-columns: 1fr; }
-    .neo-nav { flex-direction: column; gap: 10px; }
+    .neo-nav { flex-direction: column; gap: 15px; }
 }
