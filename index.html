@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Moka | Hoàng Minh Khôi</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
@@ -18,8 +19,8 @@
     <nav class="neo-nav sticky">
         <div class="logo">MOKA.DEV</div>
         <div class="nav-links">
-            <a href="#work">Dự án (Work)</a>
             <a href="#about">Về tôi (About)</a>
+            <a href="#work">Dự án (Work)</a>
             <a href="#contact" class="highlight">Liên hệ</a>
         </div>
     </nav>
@@ -30,10 +31,29 @@
             <h1>XIN CHÀO,<br>TÔI LÀ KHÔI.</h1>
             <p>Người chơi hệ "Code dạo"</p>
             <div class="action-buttons">
-                <a href="#work" class="neo-btn primary">Xem dự án</a>
-                <a href="https://github.com/moka2708" target="_blank" class="neo-btn secondary">Github</a>
+                <a href="#about" class="neo-btn primary">Xem Profile</a>
+                <a href="https://github.com/mokadotdev" target="_blank" class="neo-btn secondary">Github</a>
             </div>
         </header>
+
+        <section id="about" class="section-block about-layout">
+            <div class="card item1">
+                <h3>Moka là ai?</h3>
+                <p>Tôi tên thật là <strong>Hoàng Minh Khôi</strong>. Học code chủ yếu nhờ ChatGPT =)).</p>
+                <br>
+                <p>Phương châm: "Sáng ngủ dậy định làm người tử tế, mà đời không cho phép =)))."</p>
+            </div>
+            <div class="card item2">
+                <h3>Kỹ năng (Skillset)</h3>
+                <ul class="skill-list">
+                    <li>💻 Front-end: HTML, CSS, JS, React (mỗi thứ một ít, chủ yếu ChatGPT gánh)</li>
+                    <li>🎨 Design lỏ, biết tí Photoshop</li>
+                    <li>🔧 Tool: VS Code, Git, Figma</li>
+                    <li>🎮 Chơi game khỏi phải bàn</li>
+                    <li>☕ Khả năng uống cà phê: Thượng thừa</li>
+                </ul>
+            </div>
+        </section>
 
         <section id="work" class="section-block">
             <h2 class="section-title">DỰ ÁN TIÊU BIỂU</h2>
@@ -43,67 +63,49 @@
                     <div class="card-header">WEB</div>
                     <h3>Student ID Card</h3>
                     <p>Website tạo thẻ sinh viên trực tuyến, giao diện trực quan.</p>
-                    <div class="tech-stack">
-                        <span>HTML</span> <span>CSS</span> <span>JS</span>
-                    </div>
-                    <button class="neo-btn small">Xem Demo</button>
+                    <div class="tech-stack"><span>HTML</span> <span>CSS</span> <span>JS</span></div>
+                    <button class="neo-btn small js-modal-btn" data-project="Student ID">Xem Demo</button>
                 </div>
 
                 <div class="card project-card">
                     <div class="card-header">GAME</div>
                     <h3>Moka Adventure</h3>
                     <p>Game nhập vai 2D chạy trên trình duyệt. (Đang phát triển)</p>
-                    <div class="tech-stack">
-                        <span>Canvas</span> <span>JS</span>
-                    </div>
-                    <button class="neo-btn small">Chơi thử</button>
+                    <div class="tech-stack"><span>Canvas</span> <span>JS</span></div>
+                    <button class="neo-btn small js-modal-btn" data-project="Moka Adventure">Chơi thử</button>
                 </div>
 
                 <div class="card project-card">
                     <div class="card-header">APP</div>
                     <h3>Quản lý chi tiêu</h3>
                     <p>App giúp sinh viên quản lý tiền nong cuối tháng.</p>
-                    <div class="tech-stack">
-                        <span>React</span> <span>Firebase</span>
-                    </div>
-                    <button class="neo-btn small">Github</button>
+                    <div class="tech-stack"><span>React</span> <span>Firebase</span></div>
+                    <button class="neo-btn small js-modal-btn" data-project="Money App">Github</button>
                 </div>
-            </div>
-        </section>
-
-        <section id="about" class="section-block about-layout">
-            <div class="card item1">
-                <h3>Moka là ai?</h3>
-                <p>Tôi tên thật là <strong>Hoàng Minh Khôi</strong>. Học code chủ yếu nhớ ChatGpt =)).</p>
-                <br>
-                <p>Phương châm: "Sáng ngủ dậy định làm người tử tế, mà đời không cho phép =)))."</p>
-            </div>
-            <div class="card item2">
-                <h3>Kỹ năng (Skillset)</h3>
-                <ul class="skill-list">
-                    <li>💻 Front-end: HTML, CSS, JS, React ( mỗi thứ một ít, chử yếu ChatGpt =))) </li>
-                    <li>🎨 Design lỏ, biết tí Photoshop</li>
-                    <li>🔧 Tool: VS Code, Git, Figma</li>
-                    <li>🎮 Chơi game khỏi phải bàn </li>
-                    <li>☕ Khả năng uống cà phê: Thượng thừa</li>
-                </ul>
             </div>
         </section>
 
         <section id="contact" class="footer-box">
             <h2>HỢP TÁC KHÔNG?</h2>
             <p>Kết nối với Moka hoặc nhắn tin tâm sự mỏng tại đây nhé:</p>
-            
             <div class="action-buttons" style="justify-content: center; display: flex; gap: 15px; flex-wrap: wrap; margin-top: 20px;">
                 <a href="https://www.facebook.com/moka.2708" target="_blank" class="neo-btn primary">Facebook</a>
-                
                 <a href="https://www.instagram.com/moka_2708/" target="_blank" class="neo-btn secondary" style="background: #ff9ff3; color: black;">Instagram</a>
             </div>
         </section>
 
     </main>
 
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modal-title">Thông báo từ Moka</h2>
+            <p>Tính năng này đang được phát triển (thực ra là chưa biết code đoạn này, đợi hỏi ChatGPT đã nhé!).</p>
+            <br>
+            <button class="neo-btn primary close-btn-action">OKela</button>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
-
