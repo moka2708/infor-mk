@@ -8,7 +8,7 @@
     
     <style>
         :root {
-            /* --- MÀU GỐC (RỰC RỠ) --- */
+            /* --- MÀU GỐC --- */
             --bg-color: #f4f4f4;
             --main-text: #000000;
             --border-color: #000000;
@@ -118,23 +118,37 @@
         .neo-btn.secondary { background: #fff; color: #000; } .neo-btn.small { padding: 6px 12px; margin-top: auto; width: fit-content; }
         .action-buttons { margin-top: 25px; display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; width: 100%; }
 
-        /* --- SCREAMER FIX (QUAN TRỌNG) --- */
+        /* --- SCREAMER --- */
         #screamer {
             display: none; 
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
             background-color: black; z-index: 99999;
-            /* Flexbox để căn giữa ảnh */
             align-items: center; justify-content: center;
         }
+        #screamer img { max-width: 100%; max-height: 100%; object-fit: contain; }
 
-        #screamer img {
-            /* Đảm bảo ảnh luôn vừa khít màn hình, không bị phóng to */
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain; /* QUAN TRỌNG: Giữ nguyên hình dạng con ma */
-            width: auto;
-            height: auto;
+        /* --- CUSTOM MODAL (HỘP THOẠI TỰ CHẾ) --- */
+        #custom-modal {
+            display: none; /* Ẩn mặc định */
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5); /* Nền mờ */
+            z-index: 10000;
+            align-items: center; justify-content: center;
         }
+        .modal-box {
+            background: #fff; border: 4px solid #000; box-shadow: 8px 8px 0px #000;
+            width: 90%; max-width: 400px;
+            text-align: center;
+            animation: popIn 0.3s ease;
+        }
+        .modal-header {
+            background: var(--color-yellow); border-bottom: 3px solid #000;
+            padding: 10px; font-weight: bold; font-size: 1.1rem; text-transform: uppercase;
+        }
+        .modal-body { padding: 20px; font-size: 1rem; color: #000; }
+        .modal-footer { padding: 15px; border-top: 3px solid #000; background: #f4f4f4; }
+        
+        @keyframes popIn { 0% { transform: scale(0.8); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
 
         /* MOBILE */
         @media (max-width: 768px) {
@@ -147,22 +161,22 @@
             .neo-btn { width: 100%; text-align: center; }
         }
         
-        @keyframes shake {
-            0% { transform: translate(1px, 1px) rotate(0deg); } 10% { transform: translate(-1px, -2px) rotate(-1deg); }
-            20% { transform: translate(-3px, 0px) rotate(1deg); } 30% { transform: translate(3px, 2px) rotate(0deg); }
-            40% { transform: translate(1px, -1px) rotate(1deg); } 50% { transform: translate(-1px, 2px) rotate(-1deg); }
-            60% { transform: translate(-3px, 1px) rotate(0deg); } 70% { transform: translate(3px, 1px) rotate(-1deg); }
-            80% { transform: translate(-1px, -1px) rotate(1deg); } 90% { transform: translate(1px, 2px) rotate(0deg); }
-            100% { transform: translate(1px, -2px) rotate(-1deg); }
-        }
+        @keyframes shake { 0% { transform: translate(1px, 1px) rotate(0deg); } 10% { transform: translate(-1px, -2px) rotate(-1deg); } 20% { transform: translate(-3px, 0px) rotate(1deg); } 30% { transform: translate(3px, 2px) rotate(0deg); } 40% { transform: translate(1px, -1px) rotate(1deg); } 50% { transform: translate(-1px, 2px) rotate(-1deg); } 60% { transform: translate(-3px, 1px) rotate(0deg); } 70% { transform: translate(3px, 1px) rotate(-1deg); } 80% { transform: translate(-1px, -1px) rotate(1deg); } 90% { transform: translate(1px, 2px) rotate(0deg); } 100% { transform: translate(1px, -2px) rotate(-1deg); } }
     </style>
 </head>
 <body>
 
     <audio id="scream-sound" src="https://www.myinstants.com/media/sounds/scream_4.mp3"></audio>
-    
-    <div id="screamer">
-        <img src="https://i.imgur.com/8nLFCVP.jpg" alt="Ghost">
+    <div id="screamer"><img src="https://i.imgur.com/8nLFCVP.jpg" alt="Ghost"></div>
+
+    <div id="custom-modal">
+        <div class="modal-box">
+            <div class="modal-header">Moka hiện lên và nói:</div>
+            <div class="modal-body" id="modal-msg">Nội dung tin nhắn...</div>
+            <div class="modal-footer">
+                <button class="neo-btn small" id="close-modal">OK</button>
+            </div>
+        </div>
     </div>
 
     <div class="marquee-container">
@@ -260,25 +274,50 @@
                 localStorage.setItem('theme', body.classList.contains('dark-mode') ? 'dark' : 'light');
             });
 
-            // TROLL ALERTS
+            // --- XỬ LÝ MODAL (HỘP THOẠI TỰ CHẾ) ---
+            const modal = document.getElementById('custom-modal');
+            const modalMsg = document.getElementById('modal-msg');
+            const closeModal = document.getElementById('close-modal');
+
+            // Hàm hiện Modal
+            function showModal(message) {
+                modalMsg.innerText = message;
+                modal.style.display = 'flex'; // Dùng flex để căn giữa
+            }
+
+            // Đóng Modal khi bấm nút OK
+            closeModal.addEventListener('click', () => { modal.style.display = 'none'; });
+
+            // Đóng khi bấm ra ngoài hộp thoại
+            window.addEventListener('click', (e) => { if (e.target == modal) modal.style.display = 'none'; });
+
+
+            // NÚT DỰ ÁN (TROLL)
             const buttons = document.querySelectorAll('.bua-btn');
             const messages = [ "Tính năng đang đi vắng!", "Bạn đã bị lừa! Ha ha!", "Server đang bận...", "Lỗi 404: Không tìm thấy sự nghiêm túc.", "Đừng bấm nữa, đau nút quá!", "Chức năng này tốn 50k." ];
-            buttons.forEach(btn => { btn.addEventListener('click', () => { alert(messages[Math.floor(Math.random() * messages.length)]); }); });
+            
+            buttons.forEach(btn => { 
+                btn.addEventListener('click', () => { 
+                    // THAY THẾ ALERT MẶC ĐỊNH BẰNG MODAL XỊN
+                    showModal(messages[Math.floor(Math.random() * messages.length)]); 
+                }); 
+            });
 
-            // HÙ MA GITHUB
+            // BẪY GITHUB (HÙ MA + MODAL)
             const githubTrap = document.getElementById('github-trap');
             const screamer = document.getElementById('screamer');
             const sound = document.getElementById('scream-sound');
+            
             githubTrap.addEventListener('click', () => {
-                // Sửa lại JS để dùng Flexbox căn giữa
-                screamer.style.display = 'flex'; 
-                
+                screamer.style.display = 'flex';
                 sound.play().catch(e => console.log("Trình duyệt chặn auto-play"));
                 document.body.style.animation = "shake 0.5s infinite";
+                
                 setTimeout(() => {
                     screamer.style.display = 'none';
                     document.body.style.animation = "none";
-                    alert("GITHUB NÀY LẠ QUÁ TA? =))");
+                    // HIỆN MODAL THAY VÌ ALERT
+                    showModal("GITHUB NÀY LẠ QUÁ TA? =))");
                 }, 3000);
             });
         });
