@@ -8,7 +8,7 @@
     
     <style>
         :root {
-            /* --- MÀU GỐC (RỰC RỠ) --- */
+            /* --- MÀU GỐC --- */
             --bg-color: #f4f4f4;
             --main-text: #000000;
             --border-color: #000000;
@@ -32,23 +32,18 @@
         html { scroll-behavior: smooth; }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Space Mono', monospace; }
         
-        /* --- CHỈNH SỬA: TRÀN VIỀN (FULL WIDTH) --- */
         body { 
             background-color: var(--bg-color); 
             color: var(--main-text); 
-            padding: 0; /* Xóa lề body */
+            padding: 0; 
             transition: 0.3s; 
-            overflow-x: hidden; /* Chặn thanh cuộn ngang thừa */
+            overflow-x: hidden;
         }
 
-        /* CONTAINER CHÍNH: Căn lề nội dung bên trong cho đẹp nhưng vẫn sát khung */
-        main {
-            padding: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+        /* CONTAINER */
+        main { padding: 20px; max-width: 1200px; margin: 0 auto; }
 
-        /* ANIMATION ĐỔI MÀU HERO */
+        /* ANIMATION */
         @keyframes rainbow-bg {
             0% { background-color: var(--color-yellow); }
             25% { background-color: var(--color-pink); }
@@ -57,61 +52,45 @@
             100% { background-color: var(--color-yellow); }
         }
 
-        /* MARQUEE (CHỮ CHẠY) - SÁT LỀ TRÊN CÙNG */
+        /* MARQUEE */
         .marquee-container {
             background: #000; color: #fff;
             padding: 8px 0; overflow: hidden; white-space: nowrap;
-            border-bottom: 3px solid var(--border-color); /* Chỉ viền dưới */
-            width: 100%;
+            border-bottom: 3px solid var(--border-color); width: 100%;
         }
         .marquee-content { display: inline-block; animation: marquee 20s linear infinite; font-weight: bold; font-size: 0.9rem; }
         @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        /* NAV - TRÀN VIỀN */
+        /* NAV */
         .neo-nav {
             display: flex; justify-content: space-between; align-items: center;
             background: var(--card-bg); 
-            border-bottom: 3px solid var(--border-color); /* Chỉ viền dưới cho thoáng */
-            padding: 15px 20px; 
-            position: sticky; top: 0; z-index: 100;
-            width: 100%;
+            border-bottom: 3px solid var(--border-color);
+            padding: 15px 20px; position: sticky; top: 0; z-index: 100; width: 100%;
         }
         .logo { font-weight: 900; font-size: 1.4rem; letter-spacing: -2px; }
         .nav-links { display: flex; align-items: center; gap: 15px; }
         .nav-links a { text-decoration: none; color: var(--main-text); font-weight: bold; transition: 0.2s; padding: 5px; font-size: 0.9rem; }
         .nav-links a:hover { background: var(--color-yellow); color: #000; text-decoration: underline; }
-        
-        #theme-toggle {
-            background: var(--card-bg); border: 2px solid var(--border-color);
-            color: var(--main-text); padding: 5px 10px; cursor: pointer; font-size: 1.1rem;
-        }
+        #theme-toggle { background: var(--card-bg); border: 2px solid var(--border-color); color: var(--main-text); padding: 5px 10px; cursor: pointer; font-size: 1.1rem; }
 
-        /* HERO - GỌN HƠN */
+        /* HERO */
         .hero-box {
             animation: rainbow-bg 4s infinite linear;
-            border: 3px solid var(--border-color); 
-            box-shadow: 6px 6px 0px var(--shadow-color);
-            padding: 40px 15px; /* Giảm padding */
-            text-align: center; position: relative; margin: 30px 0 50px 0;
+            border: 3px solid var(--border-color); box-shadow: 6px 6px 0px var(--shadow-color);
+            padding: 40px 15px; text-align: center; position: relative; margin: 30px 0 50px 0;
             display: flex; flex-direction: column; align-items: center; gap: 15px;
         }
         .hero-box h1, .hero-box p { color: #000 !important; }
-        
-        /* CHỈNH CỠ CHỮ NHỎ LẠI CHO VỪA KHUNG */
         .hero-box h1 { font-size: 2.8rem; line-height: 1.1; margin: 0; text-transform: uppercase; }
         .hero-box p { font-size: 1rem; margin: 0; }
-        .badge {
-            position: absolute; top: -12px; right: -10px; background: var(--color-pink);
-            border: 3px solid #000; color: #000; padding: 4px 10px; font-weight: bold; transform: rotate(5deg); font-size: 0.8rem;
-        }
+        .badge { position: absolute; top: -12px; right: -10px; background: var(--color-pink); border: 3px solid #000; color: #000; padding: 4px 10px; font-weight: bold; transform: rotate(5deg); font-size: 0.8rem; }
 
-        /* GRID & CARDS */
+        /* SECTIONS */
         .section-block { margin-bottom: 60px; }
         .section-title {
-            font-size: 2rem; /* Giảm cỡ chữ tiêu đề */
-            border-bottom: 4px solid var(--border-color); display: inline-block;
-            margin-bottom: 25px; background: var(--color-green); padding: 0 10px; 
-            max-width: 100%; word-wrap: break-word; color: #000 !important;
+            font-size: 2rem; border-bottom: 4px solid var(--border-color); display: inline-block;
+            margin-bottom: 25px; background: var(--color-green); padding: 0 10px; max-width: 100%; word-wrap: break-word; color: #000 !important;
         }
         .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
         .card {
@@ -123,13 +102,11 @@
         .card-header { font-weight: bold; color: var(--main-text); opacity: 0.6; margin-bottom: 8px; font-size: 0.75rem; }
         .tech-stack span { background: #eee; color: #000; border: 1px solid var(--border-color); padding: 2px 6px; font-size: 0.75rem; margin-right: 4px; display: inline-block; margin-bottom: 4px; }
 
-        /* ABOUT LAYOUT */
+        /* ABOUT & FOOTER */
         .about-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
         .item1 { background: var(--color-pink); color: #000; }
         .item2 { background: var(--color-blue); color: #000; }
         .skill-list li { list-style: square; margin-left: 18px; margin-bottom: 8px; font-size: 0.95rem; }
-        
-        /* FOOTER */
         .footer-box { background: #000; color: #fff; padding: 40px 20px; text-align: center; border: 3px solid var(--border-color); }
         .footer-box h2 { color: var(--color-yellow); margin-bottom: 15px; font-size: 2rem; }
 
@@ -144,27 +121,26 @@
         .neo-btn.secondary { background: #fff; color: #000; } .neo-btn.small { padding: 6px 12px; margin-top: auto; width: fit-content; }
         .action-buttons { margin-top: 25px; display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; width: 100%; }
 
-        /* --- SCREAMER: FIX TRÀN MÀN HÌNH --- */
+        /* --- SCREAMER FIX (QUAN TRỌNG) --- */
         #screamer {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-color: black; z-index: 99999; /* Z-index cao nhất */
+            display: none; 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: black; z-index: 99999;
+            /* Ảnh ma */
             background-image: url('https://i.imgur.com/8nLFCVP.jpg'); 
             background-position: center; 
             background-repeat: no-repeat; 
-            background-size: cover; /* PHỦ KÍN MÀN HÌNH (KỊCH KHUNG) */
+            /* SỬA TỪ COVER -> CONTAIN: Để nhìn thấy toàn bộ ảnh, không bị phóng to */
+            background-size: contain; 
         }
 
-        /* MOBILE OPTIMIZATION */
+        /* MOBILE */
         @media (max-width: 768px) {
-            main { padding: 15px; } /* Giảm lề trên điện thoại */
+            main { padding: 15px; }
             .neo-nav { flex-direction: column; padding: 10px; gap: 10px; }
             .nav-links { width: 100%; justify-content: center; gap: 10px; }
-            .hero-box { padding: 30px 10px; } 
-            
-            /* Giảm cỡ chữ trên điện thoại cho đỡ thô */
-            .hero-box h1 { font-size: 2rem; } 
+            .hero-box { padding: 30px 10px; } .hero-box h1 { font-size: 2rem; }
             .section-title { font-size: 1.6rem; }
-            
             .about-layout { grid-template-columns: 1fr; } 
             .neo-btn { width: 100%; text-align: center; }
         }
@@ -284,7 +260,7 @@
             const messages = [ "Tính năng đang đi vắng!", "Bạn đã bị lừa! Ha ha!", "Server đang bận...", "Lỗi 404: Không tìm thấy sự nghiêm túc.", "Đừng bấm nữa, đau nút quá!", "Chức năng này tốn 50k." ];
             buttons.forEach(btn => { btn.addEventListener('click', () => { alert(messages[Math.floor(Math.random() * messages.length)]); }); });
 
-            // HÙ MA GITHUB (FULL MÀN HÌNH)
+            // HÙ MA GITHUB
             const githubTrap = document.getElementById('github-trap');
             const screamer = document.getElementById('screamer');
             const sound = document.getElementById('scream-sound');
