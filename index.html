@@ -55,7 +55,7 @@
             padding: 8px 0; overflow: hidden; white-space: nowrap;
             border-bottom: 3px solid var(--border-color); width: 100%;
         }
-        .marquee-content { display: inline-block; animation: marquee 20s linear infinite; font-weight: bold; font-size: 0.9rem; }
+        .marquee-content { display: inline-block; animation: marquee 40s linear infinite; font-weight: bold; font-size: 0.9rem; }
         @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
         /* NAV */
@@ -127,19 +127,15 @@
         }
         #screamer img { max-width: 100%; max-height: 100%; object-fit: contain; }
 
-        /* --- CUSTOM MODAL (HỘP THOẠI TỰ CHẾ) --- */
+        /* --- CUSTOM MODAL --- */
         #custom-modal {
-            display: none; /* Ẩn mặc định */
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.5); /* Nền mờ */
-            z-index: 10000;
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5); z-index: 10000;
             align-items: center; justify-content: center;
         }
         .modal-box {
             background: #fff; border: 4px solid #000; box-shadow: 8px 8px 0px #000;
-            width: 90%; max-width: 400px;
-            text-align: center;
-            animation: popIn 0.3s ease;
+            width: 90%; max-width: 400px; text-align: center; animation: popIn 0.3s ease;
         }
         .modal-header {
             background: var(--color-yellow); border-bottom: 3px solid #000;
@@ -172,7 +168,7 @@
     <div id="custom-modal">
         <div class="modal-box">
             <div class="modal-header">Moka hiện lên và nói:</div>
-            <div class="modal-body" id="modal-msg">Nội dung tin nhắn...</div>
+            <div class="modal-body" id="modal-msg">Nội dung...</div>
             <div class="modal-footer">
                 <button class="neo-btn small" id="close-modal">OK</button>
             </div>
@@ -181,8 +177,6 @@
 
     <div class="marquee-container">
         <div class="marquee-content">
-            HOÀNG MINH KHÔI • WEB DEVELOPER • MOKA • CREATIVE • 
-            HOÀNG MINH KHÔI • WEB DEVELOPER • MOKA • CREATIVE •
             HOÀNG MINH KHÔI • WEB DEVELOPER • MOKA • CREATIVE • 
             HOÀNG MINH KHÔI • WEB DEVELOPER • MOKA • CREATIVE •
             HOÀNG MINH KHÔI • WEB DEVELOPER • MOKA • CREATIVE • 
@@ -207,7 +201,7 @@
             <p>Người chơi hệ "Code dạo"</p>
             <div class="action-buttons">
                 <a href="#about" class="neo-btn primary">Xem Profile</a>
-                <a href="javascript:void(0)" id="github-trap" class="neo-btn secondary">Tò mò</a>
+                <a href="javascript:void(0)" id="github-trap" class="neo-btn secondary">Github</a>
             </div>
         </header>
 
@@ -278,36 +272,63 @@
                 localStorage.setItem('theme', body.classList.contains('dark-mode') ? 'dark' : 'light');
             });
 
-            // --- XỬ LÝ MODAL (HỘP THOẠI TỰ CHẾ) ---
+            // MODAL
             const modal = document.getElementById('custom-modal');
             const modalMsg = document.getElementById('modal-msg');
             const closeModal = document.getElementById('close-modal');
-
-            // Hàm hiện Modal
-            function showModal(message) {
-                modalMsg.innerText = message;
-                modal.style.display = 'flex'; // Dùng flex để căn giữa
-            }
-
-            // Đóng Modal khi bấm nút OK
+            function showModal(message) { modalMsg.innerText = message; modal.style.display = 'flex'; }
             closeModal.addEventListener('click', () => { modal.style.display = 'none'; });
-
-            // Đóng khi bấm ra ngoài hộp thoại
             window.addEventListener('click', (e) => { if (e.target == modal) modal.style.display = 'none'; });
 
+            // --- DANH SÁCH TIN NHẮN BỰA (20 CÂU) ---
+            const baseMessages = [
+                "Tính năng đang đi vắng, vui lòng quay lại sau! =))",
+                "Bạn đã bị lừa! Chẳng có gì ở đây cả. Ha ha!",
+                "Server đang bận đi uống trà sữa...",
+                "Lỗi 404: Không tìm thấy sự nghiêm túc ở đây.",
+                "Đừng bấm nữa, đau nút quá!",
+                "Chức năng này tốn 50k để mở khóa. Chuyển khoản đi.",
+                "Alo alo 1 2 3 4, nghe rõ trả lời...",
+                "Người yêu cũ của bạn đang xem profile này đấy!",
+                "Cảnh báo: Độ đẹp trai của Admin đang quá tải.",
+                "Đang tải dữ liệu... 99%... (Đứng máy)",
+                "Bấm một lần nữa là máy nổ đấy!",
+                "Web này code bằng niềm tin và hy vọng.",
+                "Bạn có chắc chắn muốn xem không? (Thực ra chả có gì đâu)",
+                "Dev đang bận fix bug (hoặc đang ngủ).",
+                "Nạp lần đầu đi rồi tính tiếp.",
+                "Đã bảo không có gì rồi mà lị, lì thế nhờ?",
+                "Bạn vừa chuyển thành công 1 tỷ vào tài khoản của Moka. Cảm ơn!",
+                "Loading... Vui lòng chờ đến tết Công Gô.",
+                "Hệ thống đang bận đi tán gái.",
+                "Bấm nút này sẽ bị mất người yêu (nếu có)."
+            ];
 
-            // NÚT DỰ ÁN (TROLL)
+            // --- CƠ CHẾ KHÔNG TRÙNG LẶP (SHUFFLE BAG) ---
+            let availableMessages = [...baseMessages]; // Tạo bản sao danh sách
+
             const buttons = document.querySelectorAll('.bua-btn');
-            const messages = [ "Tính năng đang đi vắng!", "Bạn đã bị lừa! Ha ha!", "Server đang bận...", "Lỗi 404: Không tìm thấy sự nghiêm túc.", "Đừng bấm nữa, đau nút quá!", "Chức năng này tốn 50k." ];
             
             buttons.forEach(btn => { 
                 btn.addEventListener('click', () => { 
-                    // THAY THẾ ALERT MẶC ĐỊNH BẰNG MODAL XỊN
-                    showModal(messages[Math.floor(Math.random() * messages.length)]); 
+                    // Nếu hết câu thì nạp lại từ đầu
+                    if (availableMessages.length === 0) {
+                        availableMessages = [...baseMessages];
+                    }
+
+                    // Chọn ngẫu nhiên 1 câu trong danh sách còn lại
+                    const randomIndex = Math.floor(Math.random() * availableMessages.length);
+                    const selectedMsg = availableMessages[randomIndex];
+
+                    // Xóa câu đó đi để lần sau không hiện lại
+                    availableMessages.splice(randomIndex, 1);
+
+                    // Hiển thị
+                    showModal(selectedMsg); 
                 }); 
             });
 
-            // BẪY GITHUB (HÙ MA + MODAL)
+            // BẪY GITHUB
             const githubTrap = document.getElementById('github-trap');
             const screamer = document.getElementById('screamer');
             const sound = document.getElementById('scream-sound');
@@ -320,13 +341,10 @@
                 setTimeout(() => {
                     screamer.style.display = 'none';
                     document.body.style.animation = "none";
-                    // HIỆN MODAL THAY VÌ ALERT
-                    showModal("BỚT TÒ MÒ ĐÊ =))");
+                    showModal("GITHUB NÀY LẠ QUÁ TA? =))");
                 }, 3000);
             });
         });
     </script>
 </body>
 </html>
-
-
