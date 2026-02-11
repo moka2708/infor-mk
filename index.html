@@ -8,24 +8,54 @@
     
     <style>
         :root {
+            /* --- BẢNG MÀU GỐC (LIGHT MODE) --- */
             --bg-color: #f4f4f4;
-            --border: 3px solid #000;
-            --shadow: 6px 6px 0px #000;
-            --card-shadow: 8px 8px 0px #000;
+            --main-text: #000000;
+            --border-color: #000000;
+            --card-bg: #ffffff;
+            --shadow-color: #000000;
+            
+            /* Màu nhấn */
             --color-yellow: #fffa65;
             --color-pink: #ff9ff3;
             --color-blue: #74b9ff;
             --color-green: #55efc4;
+            --color-orange: #ffaf40;
+        }
+
+        /* --- DARK MODE (GIAO DIỆN HACKER) --- */
+        body.dark-mode {
+            --bg-color: #121212;        /* Nền đen */
+            --main-text: #ffffff;       /* Chữ trắng */
+            --border-color: #ffffff;    /* Viền trắng */
+            --card-bg: #1e1e1e;         /* Thẻ màu xám đậm */
+            --shadow-color: #ffffff;    /* Bóng đổ trắng */
         }
 
         html { scroll-behavior: smooth; }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Space Mono', monospace; }
-        body { background-color: var(--bg-color); color: #000; padding: 20px; }
+        
+        body { 
+            background-color: var(--bg-color); 
+            color: var(--main-text); 
+            padding: 20px; 
+            transition: background-color 0.3s, color 0.3s; /* Hiệu ứng chuyển màu mượt */
+        }
+
+        /* --- ANIMATION ĐỔI MÀU LIÊN TỤC --- */
+        @keyframes rainbow-bg {
+            0% { background-color: var(--color-yellow); }
+            25% { background-color: var(--color-pink); }
+            50% { background-color: var(--color-blue); }
+            75% { background-color: var(--color-green); }
+            100% { background-color: var(--color-yellow); }
+        }
 
         /* MARQUEE */
         .marquee-container {
-            background: #000; color: #fff; padding: 10px 0; overflow: hidden; white-space: nowrap;
-            border: var(--border); margin-bottom: 20px;
+            background: var(--main-text); color: var(--bg-color); /* Đảo màu tự động */
+            padding: 10px 0; overflow: hidden; white-space: nowrap;
+            border: 3px solid var(--border-color); margin-bottom: 20px;
         }
         .marquee-content { display: inline-block; animation: marquee 15s linear infinite; font-weight: bold; }
         @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
@@ -33,25 +63,48 @@
         /* NAV */
         .neo-nav {
             display: flex; justify-content: space-between; align-items: center;
-            background: #fff; border: var(--border); box-shadow: var(--shadow);
+            background: var(--card-bg); 
+            border: 3px solid var(--border-color); 
+            box-shadow: 6px 6px 0px var(--shadow-color);
             padding: 15px 30px; margin-bottom: 40px; position: sticky; top: 10px; z-index: 100;
         }
         .logo { font-weight: 900; font-size: 1.5rem; letter-spacing: -2px; }
-        .nav-links { display: flex; align-items: center; }
+        .nav-links { display: flex; align-items: center; gap: 15px; } /* Thêm gap */
+        
         .nav-links a { 
-            text-decoration: none; color: #000; font-weight: bold; margin-left: 20px; transition: 0.2s; 
+            text-decoration: none; color: var(--main-text); font-weight: bold; transition: 0.2s; 
             padding: 5px;
         }
-        .nav-links a:hover { background: var(--color-yellow); text-decoration: underline; }
-        .nav-links .highlight { background: #000; color: #fff; padding: 5px 10px; }
+        .nav-links a:hover { background: var(--color-yellow); color: #000; text-decoration: underline; }
+        .nav-links .highlight { background: var(--main-text); color: var(--bg-color); padding: 5px 10px; }
         .nav-links .highlight:hover { background: var(--color-pink); color: #000; }
 
-        /* HERO */
+        /* NÚT TOGGLE DARK MODE */
+        #theme-toggle {
+            background: var(--card-bg);
+            border: 2px solid var(--border-color);
+            color: var(--main-text);
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            box-shadow: 3px 3px 0px var(--shadow-color);
+        }
+        #theme-toggle:active { transform: translate(2px, 2px); box-shadow: none; }
+
+        /* HERO - ĐÃ THÊM ANIMATION */
         .hero-box {
-            background: var(--color-yellow); border: var(--border); box-shadow: var(--shadow);
+            /* Animation gọi ở đây */
+            animation: rainbow-bg 4s infinite linear; 
+            
+            border: 3px solid var(--border-color); 
+            box-shadow: 6px 6px 0px var(--shadow-color);
             padding: 60px 20px; text-align: center; position: relative; margin-bottom: 60px;
             display: flex; flex-direction: column; align-items: center; gap: 20px;
         }
+        /* Trong Dark Mode, chữ trong Hero Box nên màu đen để dễ đọc trên nền màu */
+        body.dark-mode .hero-box { color: #000; } 
+        body.dark-mode .hero-box h1, body.dark-mode .hero-box p { color: #000; }
+        
         .hero-box h1 { font-size: 3.5rem; line-height: 1.1; margin: 0; text-transform: uppercase; }
         .hero-box p { font-size: 1.1rem; margin: 0; }
         .hero-box .action-buttons {
@@ -59,48 +112,68 @@
         }
         .badge {
             position: absolute; top: -15px; right: -15px; background: var(--color-pink);
-            border: var(--border); padding: 5px 15px; font-weight: bold; transform: rotate(5deg);
+            border: 3px solid #000; /* Luôn giữ viền đen cho badge để nổi */
+            color: #000;
+            padding: 5px 15px; font-weight: bold; transform: rotate(5deg);
         }
 
         /* SECTION */
         .section-block { margin-bottom: 80px; }
         .section-title {
-            font-size: 2.5rem; border-bottom: 5px solid #000; display: inline-block;
+            font-size: 2.5rem; 
+            border-bottom: 5px solid var(--border-color); 
+            display: inline-block;
             margin-bottom: 30px; background: var(--color-green); padding: 0 10px;
-            max-width: 100%; word-wrap: break-word;
+            max-width: 100%; word-wrap: break-word; color: #000;
         }
 
         /* GRID */
         .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
         .card {
-            background: #fff; border: var(--border); box-shadow: var(--card-shadow);
+            background: var(--card-bg); 
+            border: 3px solid var(--border-color); 
+            box-shadow: 8px 8px 0px var(--shadow-color);
             padding: 25px; transition: transform 0.2s, box-shadow 0.2s;
             display: flex; flex-direction: column; justify-content: space-between;
         }
-        .card:hover { transform: translate(-3px, -3px); box-shadow: 12px 12px 0px #000; }
-        .project-card { border-top: 10px solid #000; }
-        .card-header { font-weight: bold; color: #666; margin-bottom: 10px; font-size: 0.8rem; }
+        .card:hover { transform: translate(-3px, -3px); box-shadow: 12px 12px 0px var(--shadow-color); }
+        .project-card { border-top: 10px solid var(--border-color); }
+        
+        .card-header { font-weight: bold; color: var(--main-text); opacity: 0.7; margin-bottom: 10px; font-size: 0.8rem; }
         .tech-stack { margin: 15px 0; }
-        .tech-stack span { background: #eee; border: 1px solid #000; padding: 3px 8px; font-size: 0.8rem; margin-right: 5px; display: inline-block; margin-bottom: 5px; }
+        .tech-stack span { 
+            background: var(--bg-color); /* Đảo màu nền của tag */
+            color: var(--main-text);
+            border: 1px solid var(--border-color); 
+            padding: 3px 8px; font-size: 0.8rem; margin-right: 5px; display: inline-block; margin-bottom: 5px; 
+        }
 
         /* ABOUT & FOOTER */
         .about-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
-        .item1 { background: var(--color-pink); }
-        .item2 { background: var(--color-blue); }
+        .item1 { background: var(--color-pink); color: #000; }
+        .item2 { background: var(--color-blue); color: #000; }
         .skill-list li { list-style: square; margin-left: 20px; margin-bottom: 10px; }
-        .footer-box { background: #000; color: #fff; padding: 50px; text-align: center; border: var(--border); }
+        
+        .footer-box { 
+            background: var(--main-text); 
+            color: var(--bg-color); /* Đảo màu footer */
+            padding: 50px; text-align: center; border: 3px solid var(--border-color); 
+        }
         .footer-box h2 { color: var(--color-yellow); margin-bottom: 20px; font-size: 2.5rem; }
 
         /* BUTTONS */
         .neo-btn {
             display: inline-block; padding: 12px 25px; font-weight: bold; text-decoration: none;
-            border: var(--border); cursor: pointer; background: #fff; color: #000;
-            box-shadow: 4px 4px 0px #000; transition: 0.1s; margin: 0; white-space: nowrap;
+            border: 3px solid var(--border-color); cursor: pointer; 
+            background: var(--card-bg); color: var(--main-text);
+            box-shadow: 4px 4px 0px var(--shadow-color); transition: 0.1s; margin: 0; white-space: nowrap;
         }
-        .neo-btn:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0px #000; }
-        .neo-btn.primary { background: #000; color: #fff; }
+        .neo-btn:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0px var(--shadow-color); }
+        
+        .neo-btn.primary { background: var(--main-text); color: var(--bg-color); }
         .neo-btn.primary:hover { background: var(--color-green); color: #000; }
-        .neo-btn.secondary { background: #fff; color: #000; }
+        
+        .neo-btn.secondary { background: var(--card-bg); color: var(--main-text); }
         .neo-btn.small { padding: 8px 15px; font-size: 0.9rem; margin-top: auto; width: fit-content; }
 
         /* MOBILE */
@@ -108,7 +181,7 @@
             body { padding: 10px; }
             .neo-nav { flex-direction: column; padding: 15px; gap: 15px; position: relative; }
             .nav-links { flex-direction: column; width: 100%; gap: 10px; }
-            .nav-links a { margin: 0; width: 100%; text-align: center; border: 2px solid #000; padding: 10px; background: #eee; }
+            .nav-links a { margin: 0; width: 100%; text-align: center; border: 2px solid var(--border-color); padding: 10px; }
             .hero-box { padding: 40px 15px; }
             .hero-box h1 { font-size: 2.2rem; }
             .about-layout { grid-template-columns: 1fr; }
@@ -131,9 +204,10 @@
     <nav class="neo-nav">
         <div class="logo">MOKA</div>
         <div class="nav-links">
-            <a href="#about">Về tôi (About)</a>
-            <a href="#work">Dự án (Work)</a>
-            <a href="#contact" class="highlight">Liên hệ</a>
+            <a href="#about">Về tôi</a>
+            <a href="#work">Dự án</a>
+            <a href="#contact">Liên hệ</a>
+            <button id="theme-toggle" title="Bật/Tắt chế độ tối">🌓</button>
         </div>
     </nav>
 
@@ -203,9 +277,9 @@
             <p>FaceBook, Instagram có đủ =))</p>
             
             <div class="action-buttons" style="justify-content: center; display: flex; gap: 15px; flex-wrap: wrap; margin-top: 20px;">
-                <a href="https://www.facebook.com/moka.2708" target="_blank" class="neo-btn primary" style="background: #1877F2; color: #fff;">Facebook</a>
+                <a href="https://www.facebook.com/moka.2708" target="_blank" class="neo-btn primary" style="background: #1877F2; color: #fff; border-color: var(--border-color);">Facebook</a>
                 
-                <a href="https://www.instagram.com/moka_2708/" target="_blank" class="neo-btn secondary" style="background: #ff9ff3; color: black;">Instagram</a>
+                <a href="https://www.instagram.com/moka_2708/" target="_blank" class="neo-btn secondary" style="background: #ff9ff3; color: black; border-color: var(--border-color);">Instagram</a>
             </div>
         </section>
 
@@ -213,6 +287,28 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // --- 1. XỬ LÝ NÚT CHUYỂN CHẾ ĐỘ TỐI/SÁNG ---
+            const themeToggle = document.getElementById('theme-toggle');
+            const body = document.body;
+
+            // Kiểm tra xem người dùng có lưu chế độ trước đó không
+            const currentTheme = localStorage.getItem('theme');
+            if (currentTheme === 'dark') {
+                body.classList.add('dark-mode');
+            }
+
+            themeToggle.addEventListener('click', () => {
+                body.classList.toggle('dark-mode');
+                
+                // Lưu lại lựa chọn của người dùng vào bộ nhớ
+                if (body.classList.contains('dark-mode')) {
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    localStorage.setItem('theme', 'light');
+                }
+            });
+
+            // --- 2. XỬ LÝ NÚT BẤM CÀ KHỊA ---
             const buttons = document.querySelectorAll('.bua-btn');
             const messages = [
                 "Tính năng đang đi vắng, vui lòng quay lại sau! =))",
@@ -231,7 +327,7 @@
                     alert(randomMsg);
                 });
             });
-            console.log("Web của Moka đã lên sóng!");
+            console.log("Web của Moka đã nâng cấp Dark Mode!");
         });
     </script>
 </body>
