@@ -8,28 +8,27 @@
     
     <style>
         :root {
-            /* --- TRẢ VỀ MÀU GỐC (RỰC RỠ) --- */
+            /* --- BẢNG MÀU GỐC (RỰC RỠ) --- */
             --bg-color: #f4f4f4;
             --main-text: #000000;
             --border-color: #000000;
             --card-bg: #ffffff;
             --shadow-color: #000000;
             
-            /* Màu nhấn gốc siêu chói */
+            /* Màu nhấn siêu chói */
             --color-yellow: #fffa65;
             --color-pink: #ff9ff3;
             --color-blue: #74b9ff;
             --color-green: #55efc4;
         }
 
-        /* --- DARK MODE (HACKER) --- */
+        /* --- DARK MODE --- */
         body.dark-mode {
             --bg-color: #121212;
             --main-text: #ffffff;
             --border-color: #ffffff;
             --card-bg: #1e1e1e;
             --shadow-color: #ffffff;
-            /* Màu nhấn giữ nguyên độ tươi trong dark mode */
         }
 
         html { scroll-behavior: smooth; }
@@ -42,9 +41,18 @@
             transition: 0.3s; 
         }
 
+        /* --- ANIMATION ĐỔI MÀU (ĐÃ THÊM LẠI) --- */
+        @keyframes rainbow-bg {
+            0% { background-color: var(--color-yellow); }
+            25% { background-color: var(--color-pink); }
+            50% { background-color: var(--color-blue); }
+            75% { background-color: var(--color-green); }
+            100% { background-color: var(--color-yellow); }
+        }
+
         /* MARQUEE */
         .marquee-container {
-            background: #000; color: #fff; /* Luôn đen trắng cho nổi */
+            background: #000; color: #fff;
             padding: 10px 0; overflow: hidden; white-space: nowrap;
             border: 3px solid var(--border-color); margin-bottom: 20px;
         }
@@ -79,15 +87,17 @@
         }
         #theme-toggle:active { transform: translate(2px, 2px); box-shadow: none; }
 
-        /* HERO */
+        /* HERO - ĐÃ BẬT ANIMATION */
         .hero-box {
-            background-color: var(--color-yellow);
+            /* Kích hoạt đổi màu liên tục */
+            animation: rainbow-bg 4s infinite linear; 
+            
             border: 3px solid var(--border-color); 
             box-shadow: 6px 6px 0px var(--shadow-color);
             padding: 60px 20px; text-align: center; position: relative; margin-bottom: 60px;
             display: flex; flex-direction: column; align-items: center; gap: 20px;
         }
-        .hero-box h1, .hero-box p { color: #000 !important; } /* Luôn đen trên nền vàng */
+        .hero-box h1, .hero-box p { color: #000 !important; } /* Luôn đen */
         
         .hero-box h1 { font-size: 3.5rem; line-height: 1.1; margin: 0; text-transform: uppercase; }
         .hero-box p { font-size: 1.1rem; margin: 0; }
@@ -125,7 +135,7 @@
         .card-header { font-weight: bold; color: var(--main-text); opacity: 0.6; margin-bottom: 10px; font-size: 0.8rem; }
         .tech-stack { margin: 15px 0; }
         .tech-stack span { 
-            background: #eee; /* Màu nền tag xám nhạt */
+            background: #eee; 
             color: #000;
             border: 1px solid var(--border-color); 
             padding: 3px 8px; font-size: 0.8rem; margin-right: 5px; display: inline-block; margin-bottom: 5px; 
@@ -139,8 +149,7 @@
         
         /* FOOTER */
         .footer-box { 
-            background: #000; /* Luôn đen */
-            color: #fff; /* Luôn trắng */
+            background: #000; color: #fff;
             padding: 50px; text-align: center; border: 3px solid var(--border-color); 
         }
         .footer-box h2 { 
@@ -163,14 +172,14 @@
         .neo-btn.secondary { background: #fff; color: #000; }
         .neo-btn.small { padding: 8px 15px; font-size: 0.9rem; margin-top: auto; width: fit-content; }
 
-        /* --- PHẦN HÙ MA (SCREAMER) --- */
+        /* SCREAMER */
         #screamer {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: black; z-index: 9999;
         }
         #screamer img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* Animation rung lắc */
+        /* Animation rung */
         @keyframes shake {
             0% { transform: translate(1px, 1px) rotate(0deg); }
             10% { transform: translate(-1px, -2px) rotate(-1deg); }
@@ -363,7 +372,7 @@
                 }, 3000);
             });
 
-            console.log("Web của Moka đã trở về màu gốc siêu chói!");
+            console.log("Web của Moka đã trở về màu gốc + Animation!");
         });
     </script>
 </body>
