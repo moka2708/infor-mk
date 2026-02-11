@@ -283,4 +283,59 @@
         </section>
 
         <section id="contact" class="footer-box">
-            <h2>BỐC PH
+            <h2>BỐC PHÉT THÌ IB</h2>
+            <p>FaceBook, Instagram có đủ =))</p>
+            
+            <div class="action-buttons" style="justify-content: center; display: flex; gap: 15px; flex-wrap: wrap; margin-top: 20px;">
+                <a href="https://www.facebook.com/moka.2708" target="_blank" class="neo-btn primary" style="background: #1877F2; color: #fff; border-color: var(--border-color);">Facebook</a>
+                
+                <a href="https://www.instagram.com/moka_2708/" target="_blank" class="neo-btn secondary" style="background: #ff9ff3; color: black; border-color: var(--border-color);">Instagram</a>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // XỬ LÝ CHUYỂN MÀU
+            const themeToggle = document.getElementById('theme-toggle');
+            const body = document.body;
+            const currentTheme = localStorage.getItem('theme');
+            
+            if (currentTheme === 'dark') {
+                body.classList.add('dark-mode');
+            }
+
+            themeToggle.addEventListener('click', () => {
+                body.classList.toggle('dark-mode');
+                if (body.classList.contains('dark-mode')) {
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    localStorage.setItem('theme', 'light');
+                }
+            });
+
+            // XỬ LÝ NÚT BẤM
+            const buttons = document.querySelectorAll('.bua-btn');
+            const messages = [
+                "Tính năng đang đi vắng, vui lòng quay lại sau! =))",
+                "Bạn đã bị lừa! Chẳng có gì ở đây cả. Ha ha!",
+                "Server đang bận đi uống trà sữa...",
+                "Nút này chỉ để trang trí cho đẹp thôi :v",
+                "Lỗi 404: Không tìm thấy sự nghiêm túc ở đây.",
+                "Đừng bấm nữa, đau nút quá!",
+                "Alo alo 1 2 3 4, nghe rõ trả lời...",
+                "Chức năng này tốn 50k để mở khóa. Vui lòng chuyển khoản."
+            ];
+
+            buttons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const randomMsg = messages[Math.floor(Math.random() * messages.length)];
+                    alert(randomMsg);
+                });
+            });
+            console.log("Web của Moka đã update màu dịu mắt!");
+        });
+    </script>
+</body>
+</html>
