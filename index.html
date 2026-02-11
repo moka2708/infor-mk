@@ -8,7 +8,7 @@
     
     <style>
         :root {
-            /* --- MÀU GỐC --- */
+            /* --- MÀU GỐC (RỰC RỠ) --- */
             --bg-color: #f4f4f4;
             --main-text: #000000;
             --border-color: #000000;
@@ -20,7 +20,6 @@
             --color-green: #55efc4;
         }
 
-        /* DARK MODE */
         body.dark-mode {
             --bg-color: #121212;
             --main-text: #ffffff;
@@ -40,10 +39,8 @@
             overflow-x: hidden;
         }
 
-        /* CONTAINER */
         main { padding: 20px; max-width: 1200px; margin: 0 auto; }
 
-        /* ANIMATION */
         @keyframes rainbow-bg {
             0% { background-color: var(--color-yellow); }
             25% { background-color: var(--color-pink); }
@@ -124,14 +121,19 @@
         /* --- SCREAMER FIX (QUAN TRỌNG) --- */
         #screamer {
             display: none; 
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
             background-color: black; z-index: 99999;
-            /* Ảnh ma */
-            background-image: url('https://i.imgur.com/8nLFCVP.jpg'); 
-            background-position: center; 
-            background-repeat: no-repeat; 
-            /* SỬA TỪ COVER -> CONTAIN: Để nhìn thấy toàn bộ ảnh, không bị phóng to */
-            background-size: contain; 
+            /* Flexbox để căn giữa ảnh */
+            align-items: center; justify-content: center;
+        }
+
+        #screamer img {
+            /* Đảm bảo ảnh luôn vừa khít màn hình, không bị phóng to */
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain; /* QUAN TRỌNG: Giữ nguyên hình dạng con ma */
+            width: auto;
+            height: auto;
         }
 
         /* MOBILE */
@@ -158,7 +160,10 @@
 <body>
 
     <audio id="scream-sound" src="https://www.myinstants.com/media/sounds/scream_4.mp3"></audio>
-    <div id="screamer"></div>
+    
+    <div id="screamer">
+        <img src="https://i.imgur.com/8nLFCVP.jpg" alt="Ghost">
+    </div>
 
     <div class="marquee-container">
         <div class="marquee-content">
@@ -265,7 +270,9 @@
             const screamer = document.getElementById('screamer');
             const sound = document.getElementById('scream-sound');
             githubTrap.addEventListener('click', () => {
-                screamer.style.display = 'block';
+                // Sửa lại JS để dùng Flexbox căn giữa
+                screamer.style.display = 'flex'; 
+                
                 sound.play().catch(e => console.log("Trình duyệt chặn auto-play"));
                 document.body.style.animation = "shake 0.5s infinite";
                 setTimeout(() => {
