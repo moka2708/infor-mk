@@ -8,7 +8,7 @@
     
     <style>
         :root {
-            /* --- BẢNG MÀU GỐC (RỰC RỠ) --- */
+            /* --- MÀU GỐC (RỰC RỠ) --- */
             --bg-color: #f4f4f4;
             --main-text: #000000;
             --border-color: #000000;
@@ -31,9 +31,15 @@
 
         html { scroll-behavior: smooth; }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Space Mono', monospace; }
-        body { background-color: var(--bg-color); color: var(--main-text); padding: 20px; transition: 0.3s; }
+        
+        body { 
+            background-color: var(--bg-color); 
+            color: var(--main-text); 
+            padding: 20px; 
+            transition: 0.3s; 
+        }
 
-        /* ANIMATION ĐỔI MÀU */
+        /* ANIMATION ĐỔI MÀU HERO */
         @keyframes rainbow-bg {
             0% { background-color: var(--color-yellow); }
             25% { background-color: var(--color-pink); }
@@ -54,29 +60,39 @@
         /* NAV */
         .neo-nav {
             display: flex; justify-content: space-between; align-items: center;
-            background: var(--card-bg); border: 3px solid var(--border-color); box-shadow: 6px 6px 0px var(--shadow-color);
+            background: var(--card-bg); 
+            border: 3px solid var(--border-color); 
+            box-shadow: 6px 6px 0px var(--shadow-color);
             padding: 15px 30px; margin-bottom: 40px; position: sticky; top: 10px; z-index: 100;
         }
         .logo { font-weight: 900; font-size: 1.5rem; letter-spacing: -2px; }
         .nav-links { display: flex; align-items: center; gap: 15px; }
         .nav-links a { text-decoration: none; color: var(--main-text); font-weight: bold; transition: 0.2s; padding: 5px; }
         .nav-links a:hover { background: var(--color-yellow); color: #000; text-decoration: underline; }
-        #theme-toggle { background: var(--card-bg); border: 2px solid var(--border-color); color: var(--main-text); padding: 5px 12px; cursor: pointer; font-size: 1.2rem; box-shadow: 3px 3px 0px var(--shadow-color); }
+        
+        #theme-toggle {
+            background: var(--card-bg); border: 2px solid var(--border-color);
+            color: var(--main-text); padding: 5px 12px; cursor: pointer; font-size: 1.2rem;
+            box-shadow: 3px 3px 0px var(--shadow-color);
+        }
         #theme-toggle:active { transform: translate(2px, 2px); box-shadow: none; }
 
         /* HERO */
         .hero-box {
-            animation: rainbow-bg 4s infinite linear; 
-            border: 3px solid var(--border-color); box-shadow: 6px 6px 0px var(--shadow-color);
+            animation: rainbow-bg 4s infinite linear; /* Đổi màu liên tục */
+            border: 3px solid var(--border-color); 
+            box-shadow: 6px 6px 0px var(--shadow-color);
             padding: 60px 20px; text-align: center; position: relative; margin-bottom: 60px;
             display: flex; flex-direction: column; align-items: center; gap: 20px;
         }
         .hero-box h1, .hero-box p { color: #000 !important; }
         .hero-box h1 { font-size: 3.5rem; line-height: 1.1; margin: 0; text-transform: uppercase; }
-        .badge { position: absolute; top: -15px; right: -15px; background: var(--color-pink); border: 3px solid #000; color: #000; padding: 5px 15px; font-weight: bold; transform: rotate(5deg); }
-        .action-buttons { margin-top: 30px; display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; width: 100%; }
+        .badge {
+            position: absolute; top: -15px; right: -15px; background: var(--color-pink);
+            border: 3px solid #000; color: #000; padding: 5px 15px; font-weight: bold; transform: rotate(5deg);
+        }
 
-        /* SECTION & GRID */
+        /* GRID & CARDS */
         .section-block { margin-bottom: 80px; }
         .section-title {
             font-size: 2.5rem; border-bottom: 5px solid var(--border-color); display: inline-block;
@@ -92,9 +108,13 @@
         .card-header { font-weight: bold; color: var(--main-text); opacity: 0.6; margin-bottom: 10px; font-size: 0.8rem; }
         .tech-stack span { background: #eee; color: #000; border: 1px solid var(--border-color); padding: 3px 8px; font-size: 0.8rem; margin-right: 5px; display: inline-block; margin-bottom: 5px; }
 
-        /* ABOUT & FOOTER */
+        /* ABOUT LAYOUT */
         .about-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
-        .item1 { background: var(--color-pink); color: #000; } .item2 { background: var(--color-blue); color: #000; }
+        .item1 { background: var(--color-pink); color: #000; }
+        .item2 { background: var(--color-blue); color: #000; }
+        .skill-list li { list-style: square; margin-left: 20px; margin-bottom: 10px; }
+        
+        /* FOOTER */
         .footer-box { background: #000; color: #fff; padding: 50px; text-align: center; border: 3px solid var(--border-color); }
         .footer-box h2 { color: var(--color-yellow); margin-bottom: 20px; font-size: 2.5rem; }
 
@@ -107,20 +127,24 @@
         .neo-btn:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0px var(--shadow-color); }
         .neo-btn.primary { background: #000; color: #fff; } .neo-btn.primary:hover { background: var(--color-green); color: #000; }
         .neo-btn.secondary { background: #fff; color: #000; } .neo-btn.small { padding: 8px 15px; margin-top: auto; width: fit-content; }
+        .action-buttons { margin-top: 30px; display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; width: 100%; }
 
-        /* --- PHẦN HÙ MA (ĐÃ SỬA LẠI LINK ẢNH VÀ CÁCH HIỂN THỊ) --- */
+        /* SCREAMER (HÙ MA) */
         #screamer {
-            display: none; 
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            background-color: black; 
-            z-index: 9999;
-            /* Link ảnh mới uy tín hơn */
-            background-image: url('https://i.imgur.com/8nLFCVP.jpg'); 
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: contain; /* Đảm bảo thấy cả mặt */
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: black; z-index: 9999;
+            background-image: url('https://i.imgur.com/8nLFCVP.jpg'); /* Ảnh ma */
+            background-position: center; background-repeat: no-repeat; background-size: contain;
         }
 
+        /* MOBILE */
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            .neo-nav, .nav-links { flex-direction: column; }
+            .hero-box { padding: 40px 15px; } .hero-box h1 { font-size: 2.2rem; }
+            .about-layout { grid-template-columns: 1fr; } .neo-btn { width: 100%; text-align: center; }
+        }
+        
         /* Animation rung lắc */
         @keyframes shake {
             0% { transform: translate(1px, 1px) rotate(0deg); } 10% { transform: translate(-1px, -2px) rotate(-1deg); }
@@ -130,19 +154,11 @@
             80% { transform: translate(-1px, -1px) rotate(1deg); } 90% { transform: translate(1px, 2px) rotate(0deg); }
             100% { transform: translate(1px, -2px) rotate(-1deg); }
         }
-
-        @media (max-width: 768px) {
-            body { padding: 10px; }
-            .neo-nav, .nav-links { flex-direction: column; }
-            .hero-box { padding: 40px 15px; } .hero-box h1 { font-size: 2.2rem; }
-            .about-layout { grid-template-columns: 1fr; } .neo-btn { width: 100%; text-align: center; }
-        }
     </style>
 </head>
 <body>
 
     <audio id="scream-sound" src="https://www.myinstants.com/media/sounds/scream_4.mp3"></audio>
-    
     <div id="screamer"></div>
 
     <div class="marquee-container">
@@ -176,7 +192,11 @@
         <section id="about" class="section-block about-layout">
             <div class="card item1">
                 <h3>Moka là ai?</h3>
-                <p>Tôi tên thật là <strong>Hoàng Minh Khôi</strong>. Học code chủ yếu nhờ ChatGPT =)).</p>
+                
+                <p>Tôi tên thật là <strong>Hoàng Minh Khôi (Thánh Code Dạo)</strong>. Học code chủ yếu nhờ ChatGPT =)).</p>
+                
+                <br>
+                <p><em>"Sáng ngủ dậy định làm người tử tế, mà đời không cho phép =)))."</em></p>
             </div>
             <div class="card item2">
                 <h3>Kỹ năng (Skillset)</h3>
@@ -196,7 +216,7 @@
                 <div class="card project-card">
                     <div class="card-header">WEB</div>
                     <h3>Máy Đo Nhân Phẩm (Luck Meter)</h3>
-                    <p>Web bấm nút để xem hôm nay "ăn ở" thế nào. Điểm cao thì vui, điểm thấp thì do... máy lỗi =))) .</p>
+                    <p>Web bấm nút để xem hôm nay "ăn ở" thế nào. Điểm cao thì vui, điểm thấp thì do... máy lỗi.</p>
                     <div class="tech-stack"><span>HTML</span> <span>JS</span> <span>Tâm linh</span></div>
                     <button class="neo-btn small bua-btn">Test Nhân Phẩm</button>
                 </div>
@@ -210,7 +230,7 @@
                 <div class="card project-card">
                     <div class="card-header">VIRTUAL LOVE</div>
                     <h3>AI Bạn Gái (Chạy bằng cơm)</h3>
-                    <p>Tự động nhắn tin "chúc ngủ ngon". Đặc điểm: Không bao giờ giận dỗi (làm gì có mà giận =))) ).</p>
+                    <p>Tự động nhắn tin "chúc ngủ ngon". Đặc điểm: Không bao giờ giận dỗi.</p>
                     <div class="tech-stack"><span>Python</span> <span>Deep Fake</span> <span>Mơ ngủ</span></div>
                     <button class="neo-btn small bua-btn">Hẹn Hò Ngay</button>
                 </div>
@@ -238,12 +258,12 @@
                 localStorage.setItem('theme', body.classList.contains('dark-mode') ? 'dark' : 'light');
             });
 
-            // NÚT BỰA
+            // TROLL ALERTS
             const buttons = document.querySelectorAll('.bua-btn');
             const messages = [ "Tính năng đang đi vắng!", "Bạn đã bị lừa! Ha ha!", "Server đang bận...", "Lỗi 404: Không tìm thấy sự nghiêm túc.", "Đừng bấm nữa, đau nút quá!", "Chức năng này tốn 50k." ];
             buttons.forEach(btn => { btn.addEventListener('click', () => { alert(messages[Math.floor(Math.random() * messages.length)]); }); });
 
-            // BẪY GITHUB (HÙ MA)
+            // HÙ MA GITHUB
             const githubTrap = document.getElementById('github-trap');
             const screamer = document.getElementById('screamer');
             const sound = document.getElementById('scream-sound');
